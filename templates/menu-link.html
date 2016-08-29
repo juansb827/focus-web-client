@@ -1,0 +1,10 @@
+
+<md-button ng-class="" href="#/menus/{{parentName.trim()}}/{{section.APL_ICO}}"
+   ng-click="focusSection()">
+
+    <md-icon md-font-set="material-icons" >remove</md-icon>
+  {{section.PROMPT.trim()}}
+  <span class="md-visually-hidden" ng-if="isSelected()">
+    current page
+  </span>
+</md-button>
