@@ -1,26 +1,60 @@
 app.controller("MainController", function($scope,$resource,$location,$routeParams,$rootScope,$timeout,storageService,menuService){
-	
-	
+	   var vm=this;
+	   menuService.setMenu(storageService.getMenu());
+    vm.autoFocusContent = false;
+    vm.menu = menuService;
+    console.log(vm.menu);
+
+    vm.status = {
+    	isFirstOpen: true,
+    	isFirstDisabled: false
+    };
+
+
+    isOpen = function (section) {
+    	return vm.menu.isSectionSelected(section);
+    }
+
+    toggleOpen=function toggleOpen(section) {
+    	vm.menu.toggleSelectSection(section);
+    }
+    
+    vm.isOpen=isOpen;
+    vm.toggleOpen = toggleOpen;
+
+    $scope.menu=vm.menu;
+	/////////
 	$scope.showDrawer=false;
-	console.log("firstRun");
+	var logged=storageService.isLogged();
+	console.log("isLogged",logged);
+
+	
+
 	$scope.init=function(){
 		console.log("init");
 		$scope.empresa=storageService.getEmpresa();
-		//$scope.menu=storageService.getMenu();
-		console.log(storageService.getMenu());
+		//var menu=storageService.getMenu();
+		console.log("onInit.menu",$scope.menu);
 		$scope.menuItems=Object.keys($scope.menu);				
 		$scope.showDrawer=true;
 	}
 
 	$scope.oneAtATime = true;
 	
+	$scope.startApp=function(){
+		$scope.init();
+	}
+
+	if(logged){
+		$scope.startApp();
+	}
 
 	//Hace que sirva Material design lite
 	$rootScope.$on('$viewContentLoaded', function() {
 		$timeout(function() {
 	//		componentHandler.upgradeAllRegistered();
 			console.log("succces");
-			$scope.init();
+			
 		});
 	});
 
@@ -50,30 +84,7 @@ app.controller("MainController", function($scope,$resource,$location,$routeParam
 
 
     
-    var vm=this;
-
-    vm.autoFocusContent = false;
-    vm.menu = menuService;
-    console.log(vm.menu);
-
-    vm.status = {
-    	isFirstOpen: true,
-    	isFirstDisabled: false
-    };
-
-
-    isOpen = function (section) {
-    	return vm.menu.isSectionSelected(section);
-    }
-
-    toggleOpen=function toggleOpen(section) {
-    	vm.menu.toggleSelectSection(section);
-    }
-    
-    vm.isOpen=isOpen;
-    vm.toggleOpen = toggleOpen;
-
-    $scope.menu=vm.menu;
+ 
 
 
 

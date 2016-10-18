@@ -1,30 +1,40 @@
 app.factory("menuService",function($location,storageService){
 
+    var menuService={};
 
+    var menu=storageService.getMenu();
+    if(!menu) menu={};
+    menuSections=Object.keys(menu);
 
-        menu=storageService.getMenu();
-        menuSections=Object.keys(menu);
+    menuService.sections=  menuSections;
 
+    menuService.menu=menu;
 
+    menuService.toggleSelectSection=function (section) {
+      self.openedSection = (self.openedSection === section ? null : section);
+    };
 
-          var self;
-
-        return self = {
-          sections:  menuSections,
-          menu: menu,
-          toggleSelectSection: function (section) {
-            self.openedSection = (self.openedSection === section ? null : section);
-          },
-          isSectionSelected: function (section) {
+    menuService.isSectionSelected=function (section) {
             return self.openedSection === section;
-          },
+    };
 
-          selectPage: function (section, page) {
+    menuService.selectPage= function (section, page) {
             page && page.url && $location.path(page.url);
             self.currentSection = section;
             self.currentPage = page;
-          }
-        };
+    }
+
+    menuService.setMenu=function(){
+      
+    }
+    return menuService;
+
+
+
+
+
+
+
 
         function sortByHumanName(a, b) {
           return (a.humanName < b.humanName) ? -1 :
