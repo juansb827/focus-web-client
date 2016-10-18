@@ -82,7 +82,7 @@
       </div>
     </md-toolbar>
 
-    <md-content role="navigation">
+    <md-content ng-controller="MenuController" name="toggleMenu" role="navigation">
       <ul class="side-menu">
         <li ng-repeat="section in menu.sections" class="parent-list-item"
             ng-class="{'parentActive' : vm.isSectionSelected(section)}">

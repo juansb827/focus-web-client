@@ -1,29 +1,6 @@
 app.controller("MainController", function($scope,$resource,$location,$routeParams,$rootScope,$timeout,storageService,menuService){
-	   var vm=this;
-	   menuService.setMenu(storageService.getMenu());
-    vm.autoFocusContent = false;
-    vm.menu = menuService;
-    console.log(vm.menu);
-
-    vm.status = {
-    	isFirstOpen: true,
-    	isFirstDisabled: false
-    };
-
-
-    isOpen = function (section) {
-    	return vm.menu.isSectionSelected(section);
-    }
-
-    toggleOpen=function toggleOpen(section) {
-    	vm.menu.toggleSelectSection(section);
-    }
-    
-    vm.isOpen=isOpen;
-    vm.toggleOpen = toggleOpen;
-
-    $scope.menu=vm.menu;
-	/////////
+	
+	
 	$scope.showDrawer=false;
 	var logged=storageService.isLogged();
 	console.log("isLogged",logged);
@@ -34,8 +11,7 @@ app.controller("MainController", function($scope,$resource,$location,$routeParam
 		console.log("init");
 		$scope.empresa=storageService.getEmpresa();
 		//var menu=storageService.getMenu();
-		console.log("onInit.menu",$scope.menu);
-		$scope.menuItems=Object.keys($scope.menu);				
+		console.log("onInit.menu",$scope.menu);		
 		$scope.showDrawer=true;
 	}
 

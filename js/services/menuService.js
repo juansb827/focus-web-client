@@ -10,6 +10,7 @@ app.factory("menuService",function($location,storageService){
 
     menuService.menu=menu;
 
+    
     menuService.toggleSelectSection=function (section) {
       self.openedSection = (self.openedSection === section ? null : section);
     };
@@ -25,7 +26,7 @@ app.factory("menuService",function($location,storageService){
     }
 
     menuService.setMenu=function(){
-      
+
     }
     return menuService;
 
