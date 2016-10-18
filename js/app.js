@@ -11,14 +11,15 @@ var app=angular.module("FocusWebClient",[
 	]);
 app.config(function($routeProvider){
 	$routeProvider
-	.when("/:compName",{
+	
+	.when("/login/:compName",{
 		controller: "LoginController",
 		templateUrl: "templates/login.html"	,
 		css: "css/login.css"
 	})
-	.when("/:compName/app",{
+	.when("/home",{
 		controller: "EmptyController",
-		templateUrl: "templates/main.html",
+		template: "",
 		css: "css/menuStyle.css"		
 	})
 	.when("/menus/:menu/:formName",{

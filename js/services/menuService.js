@@ -1,7 +1,7 @@
 app.factory("menuService",function($location,storageService){
 
     var menuService={};
-
+    console.log("onCreateMenuService");
     var menu=storageService.getMenu();
     if(!menu) menu={};
     menuSections=Object.keys(menu);
@@ -10,7 +10,7 @@ app.factory("menuService",function($location,storageService){
 
     menuService.menu=menu;
 
-    
+
     menuService.toggleSelectSection=function (section) {
       self.openedSection = (self.openedSection === section ? null : section);
     };
@@ -28,6 +28,7 @@ app.factory("menuService",function($location,storageService){
     menuService.setMenu=function(){
 
     }
+    
     return menuService;
 
 

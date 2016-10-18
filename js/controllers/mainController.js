@@ -1,30 +1,39 @@
-app.controller("MainController", function($scope,$resource,$location,$routeParams,$rootScope,$timeout,storageService,menuService){
-	
-	
-	$scope.showDrawer=false;
+app.controller("MainController",function($scope,$location,storageService,$routeParams){
+	console.log("onMainController");	
 	var logged=storageService.isLogged();
-	console.log("isLogged",logged);
-
-	
-
-	$scope.init=function(){
-		console.log("init");
+	console.log("Logged",logged);	
+	$scope.showDrawer=false;
+	$scope.startApp=function(compName){
+		$location.path("/home");				
 		$scope.empresa=storageService.getEmpresa();
-		//var menu=storageService.getMenu();
-		console.log("onInit.menu",$scope.menu);		
+		$scope.sideMenu='templates/side.html';		
 		$scope.showDrawer=true;
 	}
 
-	$scope.oneAtATime = true;
-	
-	$scope.startApp=function(){
-		$scope.init();
-	}
+	$scope.$on('$routeChangeSuccess', function() {
+		if(logged){
+			$scope.startApp();
+		}	
+	 });
+})
+.controller("StartController", function($scope,$resource,$location,$routeParams,$rootScope,$timeout,storageService){	
+	/*
+	console.log("onStartController");	
+	var logged=storageService.isLogged();
+	console.log("isLogged",logged);
 
-	if(logged){
+
+	$scope.$on('$routeChangeSuccess', function() {
+		if(logged){
 		$scope.startApp();
-	}
+		}	else{
+			console.log("onRouteChange",$routeParams);
+		$location.path("app/"+$routeParams.compName+"/login");		
+		}		
+	 }); */
 
+	
+/*
 	//Hace que sirva Material design lite
 	$rootScope.$on('$viewContentLoaded', function() {
 		$timeout(function() {
@@ -33,7 +42,7 @@ app.controller("MainController", function($scope,$resource,$location,$routeParam
 			
 		});
 	});
-
+*/
 	$scope.tabla={};
 
 
@@ -54,17 +63,7 @@ app.controller("MainController", function($scope,$resource,$location,$routeParam
 
 
 
-	}
-
-    //functions for menu-link and menu-toggle
-
-
-    
- 
-
-
-
-    
+	}  
 
     
 });

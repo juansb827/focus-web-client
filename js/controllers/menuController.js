@@ -5,9 +5,9 @@ app.controller("MenuController", function($scope,$routeParams,$rootScope,$timeou
 		console.log("formName==null usando default form");	
 		$scope.include='templates/table.html';
 	}
-
 	
 
+    $scope.oneAtATime = true;
 	var vm=this;	   
     vm.autoFocusContent = false;
     vm.menu = menuService;
