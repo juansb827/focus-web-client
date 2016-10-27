@@ -22,14 +22,14 @@ app.config(function($routeProvider){
 		template: "",
 		css: "css/menuStyle.css"		
 	})
-	.when("/menus/:menu/:formName",{
-		controller: "MenuController",
-		templateUrl: "templates/include.html",
-		css: "css/menuStyle.css"
+	.when("/menus/:menu_name/:menu_id/:submenu_name/:submenu_id",{
+		controller: "EmptyController",
+		template: "",
+		css: ["css/menuStyle.css","https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"]
 	})
 	.when("/menus/:menu/",{
-		controller: "MenuController",
-		templateUrl: "templates/include.html",
+		controller: "EmptyController",
+		template: "",
 		css: ["css/menuStyle.css"
 		
 		]
@@ -59,7 +59,19 @@ app.config(function($routeProvider){
         
         return doc.label || doc.name;
       };
-  });
+  })
+/*
+* Removes / from the string so in doesnt ruin the route provider
+*/
+    .filter('fix', function () {
+    return function(value) {
+        if(!angular.isString(value)) {
+            return value;
+        }  
+        var nueva=value.trim();
+        return nueva.replace('/','-');
+    };
+});
 
 //Rutas de la aplicacion
 

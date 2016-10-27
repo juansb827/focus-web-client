@@ -1,6 +1,7 @@
 
-<md-button ng-class="" href="#/menus/{{parentName.trim()}}/{{section.APL_ICO}}"
-   ng-click="focusSection()">
+<md-button ng-class="" 
+   href="#/menus/{{parentName.trim()}}/{{section.CNUM_APLIC}}/{{section.PROMPT | fix}}/{{section.NUMERAL}}"
+   ng-click="focusSection();console.log('cliked',section);" >
 
     <md-icon md-font-set="material-icons" >remove</md-icon>
   {{section.PROMPT.trim()}}

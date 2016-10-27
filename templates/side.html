@@ -1,13 +1,13 @@
-<div layout="row" layout layout-fill>
-  <md-sidenav  class="md-sidenav-left md-whiteframe-1dp my-nav " md-component-id="left" 
-              md-is-locked-open="$mdMedia('gt-sm')" >
-    <md-toolbar md-scroll-shrink>
-      <div class="md-toolbar-tools">
+<div layout="row" layout layout-fill >
+  <md-sidenav  class="md-sidenav-left md-whiteframe-1dp my-nav" md-component-id="left" 
+              md-is-locked-open="$mdMedia('gt-sm')"  >
+    <md-toolbar md-scroll-shrink > <!-- to resize toolbar --> 
+      <div class="md-toolbar-tools"  >
         <h3>FOCUS</h3>
       </div>
     </md-toolbar>
 
-    <md-content ng-controller="MenuController" name="toggleMenu" role="navigation">
+    <md-content ng-controller="MenuController" name="toggleMenu" role="navigation" ><!-- to resize toolbar --> 
       <ul class="side-menu">
         <li ng-repeat="section in menu.sections" class="parent-list-item"
             ng-class="{'parentActive' : vm.isSectionSelected(section)}">
@@ -25,8 +25,10 @@
       </ul>
     </md-content>
   </md-sidenav>
-  <md-content  class="" style="margin: 100px auto">
-      <div ng-view class="md-whiteframe-z3 " style="border: 1px solid gray"></div>
+  <md-content  class="main-view"  style="margin: auto auto;">
+      
+        <div ng-include="content"></div>
+      
 
   </md-content>
 </div>

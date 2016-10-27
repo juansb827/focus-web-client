@@ -3,8 +3,19 @@ app.controller("MainController",function($scope,$location,storageService,$routeP
 	var logged=storageService.isLogged();
 	console.log("Logged",logged);	
 	$scope.showDrawer=false;
-	$scope.startApp=function(compName){
-		$location.path("/home");				
+
+	//Opens the menu
+	$scope.startApp=function(){
+		var current=$location.path();
+		//only redirects when trying to go to the login page
+		if(current.indexOf("login") !== -1){
+			console.log("isLogin",current);
+			$location.path("/home");
+			return;		
+		}else{
+			console.log("isNotLogin",current);
+		}		
+		
 		$scope.empresa=storageService.getEmpresa();
 		$scope.sideMenu='templates/side.html';		
 		$scope.showDrawer=true;
@@ -43,27 +54,7 @@ app.controller("MainController",function($scope,$location,storageService,$routeP
 		});
 	});
 */
-	$scope.tabla={};
-
-
-
-	//
-	$scope.reporte=function () {
-		console.log("HUHEU");
-		$resource("http://localhost:3000/queries/3").query(function (data) {
-			$scope.tabla.head=Object.keys(data[0]);
-			$scope.tabla.content=data;
-
-
-
-			console.log("keys",data );
-		});
-
-			$location.path("/query/show/table"); // path not hash
-
-
-
-	}  
+	
 
     
 });

@@ -74,11 +74,12 @@ md-sidenav {
     text-decoration: none;
     white-space: normal;
     width: 100%;
+
 }
 
 .menu-toggle-list {
     background: #fff;
-    max-height: 1300px;
+    height: 100%; 
     overflow: hidden;
     position: relative;
     z-index: 1;
